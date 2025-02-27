@@ -24,8 +24,8 @@
       url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
       dest: /tmp
       
-  - name: unzip catalogue fiel
-    ansible.buiitin.unachive:
+  - name: unzip catalogue file
+    ansible.builtin.unachive:
       src: /tmp/catalogue.zip
       dest: /app
       remote_src: yes #it meams no need to file file in ansible server ,its available in remote machine so use remote src option
