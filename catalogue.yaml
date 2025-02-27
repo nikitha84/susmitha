@@ -6,16 +6,16 @@
     ansible.builtin.shell: dnf module disable nodejs -y, dnf module enable nodejs:18 -y
   
   - name: Install nodejs
-    ansible.buitin.dnf:
+    ansible.builtin.dnf:
       name: nodejs
       state: present
       
   - name: create roboshop user
-    ansible.buitin.user:
+    ansible.builtin.user:
       name: roboshop
      
   - name: create app directory
-    ansible.buitin.file:
+    ansible.builtin.file:
       path: /app
       state: directory
 
@@ -54,7 +54,7 @@
       name: mongodb-org-shell
       state: present
 
-      
+
 
 
 
