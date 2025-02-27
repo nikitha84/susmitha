@@ -25,7 +25,7 @@
       dest: /tmp
       
   - name: unzip catalogue file
-    ansible.builtin.unachive:
+    ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
       dest: /app
       remote_src: yes #it meams no need to file file in ansible server ,its available in remote machine so use remote src option
