@@ -13,6 +13,11 @@
   - name: create roboshop user
     ansible.builtin.user:
       name: roboshop
+
+  - name: Recursively remove app directory #becoz if code is new version,app will run old code so delete app & create again
+    ansible.builtin.file:
+      path: /app
+      state: absent    
      
   - name: create app directory
     ansible.builtin.file:
@@ -63,7 +68,7 @@
   #     msg: "product count: {{product_count}}"
 
   - name: load the data into mongodb
-    ansible.builtin.command: mongo --host 172.31.33.15 < /app/schema/catalogue.js 
+    ansible.builtin.command: mongo --host 172.31.36.207 < /app/schema/catalogue.js 
     when: product_count.stdout == 0
 
   - name: start and enable catalogue

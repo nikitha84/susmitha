@@ -1,0 +1,42 @@
+- name: web
+  become: yes
+  hosts: web
+  tasks:
+  - name: install nginx
+    ansible.builtin.dnf:
+      name: nginx
+      status: present
+
+  - name: remove html app directory # during delete app default content will be deleted
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: absent
+
+  - name: create html app directory
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: present
+
+  - name: download web app
+    ansible.buitltin.get_url:
+      url: curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+      dest: /tmp
+
+
+  - name: unzip web app
+    ansible.builtin.unarchive:
+      src: /tmp/web.zip
+      dest: /usr/share/nginx/html
+      remote_src: yes
+
+  - name: copy roboshop configuration
+    ansible.builtin.copy:
+      src: roboshop.conf
+      dest: /etc/nginx/default.d/roboshop.conf
+
+  - name: start and enable
+    ansible.builtin.service:
+      name: web
+      state: restarted        
+      enabled: yes
+      
