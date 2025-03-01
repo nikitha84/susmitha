@@ -19,7 +19,7 @@
 
   - name: download web app
     ansible.buitltin.get_url:
-      url: curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+      url: https://roboshop-builds.s3.amazonaws.com/web.zip
       dest: /tmp
 
 
@@ -39,4 +39,4 @@
       name: web
       state: restarted        
       enabled: yes
-      
+
