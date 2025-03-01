@@ -5,7 +5,7 @@
   - name: install nginx
     ansible.builtin.dnf:
       name: nginx
-      status: present
+      state: present
 
   - name: remove html app directory # during delete app default content will be deleted
     ansible.builtin.file:
